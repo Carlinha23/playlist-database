@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<form method="POST" action="{{ url_for('add_song') }}">
+    {{ form.csrf_token }}
+    
+    <div class="mb-3">
+      <label for="{{ form.title.id }}" class="form-label">Song Title:</label>
+      {{ form.title(class="form-control", id=form.title.id) }}
+      {% for error in form.title.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+  
+    <div class="mb-3">
+      <label for="{{ form.artist.id }}" class="form-label">Artist:</label>
+      {{ form.artist(class="form-control", id=form.artist.id) }}
+      {% for error in form.artist.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Create Song</button>
+  </form>
+
+{% endblock %}

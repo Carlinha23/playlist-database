@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Add a form that when submitted creates a new playlist!</h1>
+<form method="POST" action="{{ url_for('add_playlist') }}">
+    {{ form.csrf_token }}
+    
+    <label for="{{ form.name.id }}">Playlist Name:</label>
+    {{ form.name(class="form-control", id=form.name.id) }}
+    {% for error in form.name.errors %}
+      <span class="text-danger">{{ error }}</span>
+    {% endfor %}
+  
+    <label for="{{ form.description.id }}">Description:</label>
+    {{ form.description(class="form-control", id=form.description.id) }}
+    {% for error in form.description.errors %}
+      <span class="text-danger">{{ error }}</span>
+    {% endfor %}
+  
+    <button type="submit" class="btn btn-primary mt-3">Create Playlist</button>
+</form>
+{% endblock %}
